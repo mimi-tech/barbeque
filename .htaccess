@@ -1,0 +1,17 @@
+
+
+RewriteEngine on
+Options -MultiViews
+RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+RewriteRule ^ /%1 [NC,L,R]
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^ %{REQUEST_URI}.php [NC,L]
+
+
+# RewriteRule ^search/([0-9a-zA-Z]+)/([0-9a-zA-Z]+)search?details=$1
+
+# 1 Month for most static assets
+<filesMatch ".(jpg|jpeg|png|gif|otf|eot|svg|ttf|woff|woff2)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>
